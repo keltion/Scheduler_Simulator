@@ -14,7 +14,7 @@ public:
         canvas[pid - 'A'][time] = true;
     }
 
-    void print() {
+    void print() const {
         int idx = 0;
         for(auto &process : canvas) {
             char process_name = 'A' + idx;
