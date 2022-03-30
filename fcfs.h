@@ -22,7 +22,7 @@ public:
         }
     }
 
-    void SortProcess() {
+    void SortByArriveTime() {
         std::sort(std::begin(ready_queue_), std::end(ready_queue_),
                   [](const std::unique_ptr<Process>& lhs,
                      const std::unique_ptr<Process>& rhs) {
@@ -31,7 +31,7 @@ public:
     }
 
     void CPUAllocate() {
-        SortProcess();
+        SortByArriveTime();
         while(!ready_queue_.empty()) {
             std::unique_ptr<Process> process = std::move(ready_queue_.front());
             ready_queue_.erase(ready_queue_.begin());
