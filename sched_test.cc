@@ -34,4 +34,9 @@ int main() {
     FCFS fcfs(number_of_process, total_time, memory);
     fcfs.CPUAllocate();
     fcfs.PrintFootPrint();
+
+    std::cout << "===== SJF =>" << std::endl;
+    SJF sjf(number_of_process, total_time, memory);
+    sjf.CPUAllocate();
+    sjf.PrintFootPrint();
 }
