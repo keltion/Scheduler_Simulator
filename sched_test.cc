@@ -2,14 +2,11 @@
 #include <vector>
 
 #include "fcfs.h"
+#include "sjf.h"
 #include "process.h"
 
-std::vector<std::unique_ptr<Process>> ready_queue;
+std::vector<std::unique_ptr<Process>> memory;
 
-void InputReadQueue(std::unique_ptr<Process> process) {
-    ready_queue.emplace_back(std::move(process));
-    return;
-}
 
 void MakeProcess(int& number_of_process, int& total_time) {
     char process_id = 'A';
@@ -22,7 +19,7 @@ void MakeProcess(int& number_of_process, int& total_time) {
         std::cout << "Enter " << pid << "'s run time and arrive time: ";
         std::cin >> run_time >> arrive_time;
         std::unique_ptr<Process> process = std::make_unique<Process>(run_time, arrive_time, pid);
-        InputReadQueue(std::move(process));
+        memory.emplace_back(std::move(process));
         total_time += run_time;
     }
 }
@@ -32,8 +29,9 @@ int main() {
     int total_time = 0;
 
     MakeProcess(number_of_process, total_time);   
-    FCFS fcfs(number_of_process, total_time);
 
-    fcfs.CPUAllocate(ready_queue);
+    std::cout << "===== FCFC =>" << std::endl;
+    FCFS fcfs(number_of_process, total_time, memory);
+    fcfs.CPUAllocate();
     fcfs.PrintFootPrint();
 }
