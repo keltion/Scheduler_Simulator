@@ -45,7 +45,7 @@ public:
         int start = position_;
         // Find which process arrived based on current cpu_time_
         auto itr = memory_.begin();
-        for (itr + position_; itr != memory_.end(); itr++) {
+        for (itr += position_; itr != memory_.end(); itr++) {
             if (cpu_time_ >= (*itr)->GetArriveTime()) {
                 count++;
                 continue;
@@ -56,7 +56,7 @@ public:
         position_ += count;
 
         itr = memory_.begin();
-        for (itr + start; itr != memory_.begin() + position_; itr++) {
+        for (itr += start; itr != memory_.begin() + position_; itr++) {
             ready_queue_.emplace_back(std::move(*itr));
         }
         return;
