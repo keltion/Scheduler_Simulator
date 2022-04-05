@@ -2,6 +2,7 @@
 #include <vector>
 
 #include "fcfs.h"
+#include "rr.h"
 #include "sjf.h"
 #include "process.h"
 
@@ -39,4 +40,9 @@ int main() {
     SJF sjf(number_of_process, total_time, memory);
     sjf.CPUAllocate();
     sjf.PrintFootPrint();
+
+    std::cout << "===== RR =>" << std::endl;
+    RR rr(number_of_process, total_time, memory, 1);
+    rr.CPUAllocate();
+    rr.PrintFootPrint();
 }
